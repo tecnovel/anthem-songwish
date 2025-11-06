@@ -24,3 +24,17 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/*
+ Prevent iOS Safari from auto-zooming when focusing inputs by ensuring
+ form controls have a font-size of at least 16px. This is the recommended
+ approach because disabling user zoom via the viewport meta tag harms
+ accessibility.
+*/
+input,
+textarea,
+select,
+button {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%; /* ensure text-size-adjust doesn't reduce sizes */
+}

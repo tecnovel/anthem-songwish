@@ -1,0 +1,25 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model SongWish {
+  id           String   @id @default(cuid())
+  firstName    String
+  lastName     String
+  email        String
+  trackId      String
+  trackName    String
+  trackArtists String
+  album        String?
+  imageUrl     String?
+  spotifyUrl   String?
+  durationMs   Int?
+  slotIndex    Int
+  channel      String?
+  createdAt    DateTime @default(now())
+}
