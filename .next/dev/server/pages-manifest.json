@@ -1,0 +1,11 @@
+{
+  "/": "pages/index.js",
+  "/_app": "pages/_app.js",
+  "/_document": "pages/_document.js",
+  "/_error": "pages/_error.js",
+  "/admin": "pages/admin.js",
+  "/api/admin/export": "pages/api/admin/export.js",
+  "/api/admin/song-wishes": "pages/api/admin/song-wishes.js",
+  "/api/search": "pages/api/search.js",
+  "/api/wish": "pages/api/wish.js"
+}

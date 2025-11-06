@@ -1,0 +1,12 @@
+{
+  "/": "pages/index.html",
+  "/_app": "pages/_app.js",
+  "/_document": "pages/_document.js",
+  "/_error": "pages/_error.js",
+  "/admin": "pages/admin.html",
+  "/api/admin/export": "pages/api/admin/export.js",
+  "/api/admin/song-wishes": "pages/api/admin/song-wishes.js",
+  "/api/search": "pages/api/search.js",
+  "/api/wish": "pages/api/wish.js",
+  "/404": "pages/404.html"
+}
