@@ -141,17 +141,22 @@ const HomePage: NextPage = () => {
         await response.json().catch(() => ({}));
 
       if (!response.ok || !data.success) {
-        throw new Error(
-          data.error ?? "Dein Songwunsch konnte nicht gespeichert werden."
-        );
+        // Prefer a server-provided error message when available so the user sees validation issues
+        const apiError =
+          data.error ?? "Dein Songwunsch konnte nicht gespeichert werden.";
+        setSubmitError(apiError);
+        return;
       }
 
       setSubmitSuccess(data.message ?? "Deine Songwünsche wurden gespeichert.");
     } catch (error) {
       console.error("Wish submission failed", error);
-      setSubmitError(
-        "Beim Speichern deiner Songwünsche ist ein Fehler aufgetreten."
-      );
+      // If we catch here, prefer the caught error message when available
+      const message =
+        error instanceof Error
+          ? error.message
+          : "Beim Speichern deiner Songwünsche ist ein Fehler aufgetreten.";
+      setSubmitError(message);
     } finally {
       setSubmitting(false);
     }

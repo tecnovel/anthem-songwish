@@ -43,7 +43,9 @@ function normalizeOptionalString(value: unknown): string | undefined {
   return value.trim();
 }
 
-function validateBody(payload: unknown): { body: WishBody } | { error: string } {
+function validateBody(
+  payload: unknown
+): { body: WishBody } | { error: string } {
   if (!payload || typeof payload !== "object") {
     return { error: "Invalid input: body must be an object." };
   }
@@ -62,8 +64,14 @@ function validateBody(payload: unknown): { body: WishBody } | { error: string } 
     return { error: "Invalid input: email must be a valid address." };
   }
 
-  if (!Array.isArray(candidate.tracks) || candidate.tracks.length < 1 || candidate.tracks.length > 3) {
-    return { error: "Invalid input: tracks must contain between 1 and 3 items." };
+  if (
+    !Array.isArray(candidate.tracks) ||
+    candidate.tracks.length < 1 ||
+    candidate.tracks.length > 3
+  ) {
+    return {
+      error: "Invalid input: tracks must contain between 1 and 3 items.",
+    };
   }
 
   const normalizedTracks: IncomingTrack[] = [];
@@ -73,21 +81,29 @@ function validateBody(payload: unknown): { body: WishBody } | { error: string } 
     const trackCandidate = candidate.tracks[index];
 
     if (!trackCandidate || typeof trackCandidate !== "object") {
-      return { error: `Invalid input: track at position ${index + 1} is malformed.` };
+      return {
+        error: `Invalid input: track at position ${index + 1} is malformed.`,
+      };
     }
 
     const track = trackCandidate as IncomingTrack;
 
     if (!isNonEmptyString(track.id)) {
-      return { error: `Invalid input: track id missing at position ${index + 1}.` };
+      return {
+        error: `Invalid input: track id missing at position ${index + 1}.`,
+      };
     }
 
     if (!isNonEmptyString(track.name)) {
-      return { error: `Invalid input: track name missing at position ${index + 1}.` };
+      return {
+        error: `Invalid input: track name missing at position ${index + 1}.`,
+      };
     }
 
     if (!isNonEmptyString(track.artists)) {
-      return { error: `Invalid input: track artists missing at position ${index + 1}.` };
+      return {
+        error: `Invalid input: track artists missing at position ${index + 1}.`,
+      };
     }
 
     const normalizedTrack: IncomingTrack = {
@@ -97,7 +113,8 @@ function validateBody(payload: unknown): { body: WishBody } | { error: string } 
       album: track.album ? track.album.trim() : undefined,
       spotify_url: track.spotify_url ? track.spotify_url.trim() : undefined,
       image_url: track.image_url ? track.image_url.trim() : undefined,
-      duration_ms: typeof track.duration_ms === "number" ? track.duration_ms : undefined,
+      duration_ms:
+        typeof track.duration_ms === "number" ? track.duration_ms : undefined,
     };
 
     if (trackIds.has(normalizedTrack.id)) {
@@ -121,7 +138,7 @@ function validateBody(payload: unknown): { body: WishBody } | { error: string } 
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<SuccessResponse | ErrorResponse>,
+  res: NextApiResponse<SuccessResponse | ErrorResponse>
 ): Promise<void> {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
@@ -130,7 +147,8 @@ export default async function handler(
   }
 
   try {
-    const rawPayload = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
+    const rawPayload =
+      typeof req.body === "string" ? JSON.parse(req.body) : req.body;
     const validationResult = validateBody(rawPayload);
 
     if ("error" in validationResult) {
@@ -145,12 +163,9 @@ export default async function handler(
     });
 
     if (existingWish) {
-      res
-        .status(409)
-        .json({
-          error:
-            "Für diese E-Mail-Adresse wurde bereits ein Songwunsch abgegeben.",
-        });
+      res.status(409).json({
+        error: "Es ist nur eine Wunschabgabe pro Person erlaubt.",
+      });
       return;
     }
 

@@ -117,6 +117,54 @@ const AdminPage: React.FC = () => {
     []
   );
 
+  // modal for showing detailed voters for a grouped track
+  const [detailsOpen, setDetailsOpen] = useState(false);
+  const [detailsItem, setDetailsItem] = useState<GroupedItem | null>(null);
+  const [detailsRows, setDetailsRows] = useState<RawItem[]>([]);
+  const [detailsLoading, setDetailsLoading] = useState(false);
+  const [detailsError, setDetailsError] = useState<string | null>(null);
+
+  const openDetails = useCallback(async (item: GroupedItem) => {
+    setDetailsItem(item);
+    setDetailsOpen(true);
+    setDetailsLoading(true);
+    setDetailsError(null);
+    try {
+      // try to request raw entries for this trackId; backend may ignore trackId, so filter client-side as fallback
+      const params = new URLSearchParams();
+      params.set("grouped", "false");
+      params.set("trackId", item.trackId);
+
+      const res = await fetch(`/api/admin/song-wishes?${params.toString()}`);
+      const data = await res.json().catch(() => null);
+      if (!res.ok) {
+        throw new Error(
+          (data && data.error) || `Fehler beim Laden (${res.status})`
+        );
+      }
+
+      // if API returned raw items, filter by trackId; otherwise empty
+      const rows: RawItem[] = Array.isArray(data?.items)
+        ? (data.items as RawItem[])
+        : [];
+
+      // Some backends might ignore trackId param; ensure filtering client-side
+      const filtered = rows.filter((r) => r.trackId === item.trackId);
+      setDetailsRows(filtered);
+    } catch (err) {
+      setDetailsError(err instanceof Error ? err.message : String(err));
+    } finally {
+      setDetailsLoading(false);
+    }
+  }, []);
+
+  const closeDetails = useCallback(() => {
+    setDetailsOpen(false);
+    setDetailsItem(null);
+    setDetailsRows([]);
+    setDetailsError(null);
+  }, []);
+
   return (
     <>
       <Head>
@@ -141,6 +189,12 @@ const AdminPage: React.FC = () => {
                 <input
                   value={search}
                   onChange={(event) => setSearch(event.target.value)}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter") {
+                      event.preventDefault();
+                      handleSearch();
+                    }
+                  }}
                   placeholder="Suche nach Song, Artist oder Gast..."
                   className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-black focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100"
                 />
@@ -204,7 +258,11 @@ const AdminPage: React.FC = () => {
                         </tr>
                       )}
                       {groupedItems.map((item, index) => (
-                        <tr key={item.trackId}>
+                        <tr
+                          key={item.trackId}
+                          onClick={() => openDetails(item)}
+                          className="cursor-pointer hover:bg-gray-50"
+                        >
                           <td className="px-4 py-3 font-semibold text-gray-700 whitespace-nowrap">
                             {index + 1}
                           </td>
@@ -225,10 +283,31 @@ const AdminPage: React.FC = () => {
                               <a
                                 href={item.spotifyUrl}
                                 target="_blank"
-                                rel="noreferrer"
-                                className="text-indigo-600 hover:text-indigo-500"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                className="inline-flex items-center gap-2 rounded-md bg-indigo-600 px-3 py-1 text-sm font-medium text-white hover:bg-indigo-500"
                               >
-                                Link
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth={2}
+                                  className="h-4 w-4"
+                                  aria-hidden
+                                >
+                                  <path
+                                    d="M15 3v4a2 2 0 0 1-2 2H7"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                  />
+                                  <path
+                                    d="M10 14L21 3"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                  />
+                                </svg>
+                                Spotify
                               </a>
                             ) : (
                               <span className="text-gray-400">—</span>
@@ -250,7 +329,8 @@ const AdminPage: React.FC = () => {
                   {groupedItems.map((item, index) => (
                     <div
                       key={item.trackId}
-                      className="rounded-lg border border-gray-100 bg-white p-3 shadow-sm"
+                      onClick={() => openDetails(item)}
+                      className="rounded-lg border border-gray-100 bg-white p-3 shadow-sm cursor-pointer"
                     >
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0">
@@ -279,10 +359,31 @@ const AdminPage: React.FC = () => {
                             <a
                               href={item.spotifyUrl}
                               target="_blank"
-                              rel="noreferrer"
-                              className="text-indigo-600 text-sm block mt-1"
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              className="inline-flex items-center gap-2 rounded-md bg-indigo-600 px-3 py-1 text-sm font-medium text-white hover:bg-indigo-500"
                             >
-                              Link
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth={2}
+                                className="h-4 w-4"
+                                aria-hidden
+                              >
+                                <path
+                                  d="M15 3v4a2 2 0 0 1-2 2H7"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+                                <path
+                                  d="M10 14L21 3"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+                              </svg>
+                              Spotify
                             </a>
                           ) : null}
                         </div>
@@ -291,6 +392,136 @@ const AdminPage: React.FC = () => {
                   ))}
                 </div>
               </>
+            )}
+
+            {/* Details modal */}
+            {detailsOpen && detailsItem && (
+              <div className="fixed inset-0 z-50 flex items-center justify-center">
+                <div
+                  className="absolute inset-0 bg-black/40"
+                  onClick={closeDetails}
+                />
+                <div className="relative z-10 max-w-2xl w-full rounded-lg bg-white shadow-lg">
+                  <div className="flex items-start justify-between border-b px-4 py-3">
+                    <div>
+                      <div className="text-lg font-semibold text-gray-900">
+                        {detailsItem.trackName}
+                      </div>
+                      <div className="text-sm text-gray-600">
+                        {detailsItem.trackArtists}
+                      </div>
+                    </div>
+                    <button
+                      onClick={closeDetails}
+                      className="ml-4 rounded-md bg-gray-100 px-3 py-1 text-sm text-gray-700 hover:bg-gray-200"
+                    >
+                      Schliessen
+                    </button>
+                  </div>
+
+                  <div className="px-4 py-4">
+                    <div className="flex gap-4">
+                      {detailsItem.imageUrl ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={detailsItem.imageUrl}
+                          alt={detailsItem.trackName}
+                          className="h-28 w-28 rounded-md object-cover"
+                        />
+                      ) : (
+                        <div className="h-28 w-28 rounded-md bg-gray-100" />
+                      )}
+                      <div className="flex-1">
+                        <div className="flex items-center gap-3">
+                          <div className="text-sm text-gray-700 mb-2">
+                            Album: {detailsItem.album ?? "—"}
+                          </div>
+                          {detailsItem.spotifyUrl && (
+                            <a
+                              href={detailsItem.spotifyUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 rounded-md bg-green-600 px-3 py-1 text-sm font-medium text-white hover:bg-green-500"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth={2}
+                                className="h-4 w-4"
+                                aria-hidden
+                              >
+                                <path
+                                  d="M3 12h18"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+                                <path
+                                  d="M14 5l7 7-7 7"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+                              </svg>
+                              Auf Spotify öffnen
+                            </a>
+                          )}
+                        </div>
+                        <div className="text-sm text-gray-700 mb-2">
+                          Votes: {detailsItem.voteCount}
+                        </div>
+                        <div className="text-sm text-gray-700">
+                          Dauer:{" "}
+                          {detailsItem.durationMs
+                            ? Math.round((detailsItem.durationMs || 0) / 1000) +
+                              "s"
+                            : "—"}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="mt-4">
+                      <h3 className="text-sm font-semibold text-gray-900 mb-2">
+                        Gewählt von
+                      </h3>
+                      {detailsLoading && (
+                        <p className="text-sm text-gray-600">Lade…</p>
+                      )}
+                      {detailsError && (
+                        <p className="text-sm text-red-600">{detailsError}</p>
+                      )}
+                      {!detailsLoading &&
+                        !detailsError &&
+                        detailsRows.length === 0 && (
+                          <p className="text-sm text-gray-600">
+                            Keine Wähler gefunden.
+                          </p>
+                        )}
+                      {!detailsLoading && detailsRows.length > 0 && (
+                        <ul className="max-h-64 overflow-auto divide-y divide-gray-100">
+                          {detailsRows.map((r) => (
+                            <li
+                              key={r.id}
+                              className="flex items-center justify-between gap-3 py-2"
+                            >
+                              <div>
+                                <div className="text-sm font-medium text-gray-900">
+                                  {r.firstName} {r.lastName}
+                                </div>
+                                <div className="text-xs text-gray-600">
+                                  {r.email} • Slot {r.slotIndex + 1}
+                                </div>
+                              </div>
+                              <div className="text-xs text-gray-500">
+                                {new Date(r.createdAt).toLocaleString()}
+                              </div>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
             )}
 
             {!loading && !error && !grouped && (
