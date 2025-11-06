@@ -36,20 +36,28 @@ const SongSearchModal: React.FC<SongSearchModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/50 px-3 py-10 sm:px-4"
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/70 px-3 py-10 sm:px-4"
       onMouseDown={handleOverlayMouseDown}
       role="presentation"
     >
-      <div className="relative w-full max-w-lg rounded-2xl bg-white p-4 shadow-xl sm:max-w-2xl sm:p-6">
+      <div
+        className="relative w-full max-w-lg rounded-3xl p-5 shadow-[0_28px_56px_rgba(0,0,0,0.6)] sm:max-w-2xl sm:p-7"
+        style={{
+          background:
+            "linear-gradient(145deg, rgba(27,27,36,0.95), rgba(22,21,32,0.8))",
+          border: "1px solid rgba(255,255,255,0.08)",
+          backdropFilter: "blur(26px)",
+        }}
+      >
         <button
           type="button"
           onClick={onClose}
-          className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 bg-white text-lg text-gray-700 shadow-sm transition hover:bg-gray-50 sm:h-10 sm:w-10"
+          className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-lg text-gray-200 shadow-[0_6px_16px_rgba(0,0,0,0.4)] transition hover:bg-white/20 sm:h-10 sm:w-10"
           aria-label="Schließen"
         >
           <span aria-hidden>×</span>
         </button>
-        <h2 className="mb-4 text-lg font-semibold text-gray-900 sm:text-xl">
+        <h2 className="mb-4 text-lg font-semibold text-white sm:text-xl">
           Song auswählen
         </h2>
         <div className="max-h-[70vh] overflow-y-auto pr-1">

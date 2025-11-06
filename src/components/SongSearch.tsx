@@ -51,8 +51,9 @@ const SongSearch: React.FC<SongSearchProps> = ({
   }, [initialQuery]);
 
   const runSearch = useCallback(
-    async (trigger: "manual" | "debounced") => {
-      const trimmedQuery = query.trim();
+    async (trigger: "manual" | "debounced", overrideQuery?: string) => {
+      const raw = typeof overrideQuery === "string" ? overrideQuery : query;
+      const trimmedQuery = raw.trim();
 
       if (trimmedQuery.length < 3) {
         if (trigger === "manual") {
@@ -104,7 +105,7 @@ const SongSearch: React.FC<SongSearchProps> = ({
       return;
     }
 
-    await runSearch("manual");
+    await runSearch("manual", trimmedQuery);
   };
 
   // Debounced auto-search when the user types
@@ -133,6 +134,24 @@ const SongSearch: React.FC<SongSearchProps> = ({
     };
   }, [query, runSearch]);
 
+  // If the parent supplies an initialQuery (e.g. when editing an existing
+  // selection), prefill the input and trigger an immediate search so the user
+  // sees results right away.
+  useEffect(() => {
+    if (!initialQuery) return;
+    setQuery(initialQuery);
+    const trimmed = initialQuery.trim();
+    if (trimmed.length >= 3) {
+      // run an immediate search using the provided initialQuery
+      void runSearch("manual", trimmed);
+    } else {
+      // small queries should clear previous results
+      setResults([]);
+      setError(null);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialQuery]);
+
   return (
     <div className="flex flex-col gap-4">
       <form
@@ -147,7 +166,7 @@ const SongSearch: React.FC<SongSearchProps> = ({
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Song oder Artist eingeben..."
             aria-label="Song oder Artist eingeben"
-            className="w-full rounded border border-gray-200 bg-white px-3 py-2 pr-10 text-sm text-black placeholder-gray-500 focus:border-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-100"
+            className="w-full rounded-lg border border-white/15 bg-white/10 px-3 py-2 pr-10 text-sm text-white placeholder-gray-400 focus:border-fuchsia-500 focus:outline-none focus:ring-2 focus:ring-fuchsia-400/40"
           />
 
           {query.trim().length > 0 && (
@@ -163,7 +182,20 @@ const SongSearch: React.FC<SongSearchProps> = ({
               aria-label="Suche löschen"
               className="absolute right-2 top-1/2 -translate-y-1/2 rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
             >
-              ×
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="14"
+                height="14"
+                aria-hidden="true"
+                focusable="false"
+                className="inline-block"
+              >
+                <path
+                  d="M18.3 5.71a1 1 0 0 0-1.41 0L12 10.59 7.11 5.7A1 1 0 0 0 5.7 7.11L10.59 12l-4.9 4.89a1 1 0 1 0 1.41 1.41L12 13.41l4.89 4.9a1 1 0 0 0 1.41-1.41L13.41 12l4.9-4.89a1 1 0 0 0 0-1.4z"
+                  fill="currentColor"
+                />
+              </svg>
             </button>
           )}
         </div>
@@ -171,7 +203,7 @@ const SongSearch: React.FC<SongSearchProps> = ({
         <button
           type="submit"
           disabled={loading}
-          className="w-full rounded bg-black px-4 py-2 text-sm font-medium text-white transition hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
+          className="w-full rounded bg-gray-700 px-4 py-2 text-sm font-medium text-white transition hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
         >
           {loading ? "Suche..." : "Suchen"}
         </button>

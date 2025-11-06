@@ -158,20 +158,35 @@ const HomePage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Anthem Party – Songwunsch</title>
+        <title>Anthem Party – Night Selection</title>
         <meta
           name="description"
-          content="Such deine Lieblingssongs, wähle bis zu drei Favoriten aus und steigere die Chancen, dass sie zur Primetime gespielt werden."
+          content="Pick deine Nightlife-Favoriten – bis zu drei Tracks, die in der Anthem Party Primetime laufen sollen."
         />
       </Head>
-      <main className="mx-auto flex min-h-screen w-full max-w-3xl flex-col gap-8 px-4 py-8 sm:px-6 sm:py-12">
-        <section className="w-full overflow-hidden rounded-xl bg-white px-5 py-6 shadow-md sm:px-6">
-          <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
-            Anthem Party – Songwunsch
+      <main
+        className="mx-auto flex min-h-screen w-full max-w-3xl flex-col gap-8 px-4 py-10 sm:px-6 sm:py-14"
+        style={{
+          background:
+            "radial-gradient(120% 110% at 50% -10%, rgba(255,0,128,0.35), rgba(14,14,20,0.96) 65%)",
+        }}
+      >
+        <section
+          className="w-full overflow-hidden rounded-[28px] px-7 py-8 shadow-[0_24px_48px_rgba(0,0,0,0.55)] sm:px-9"
+          style={{
+            backdropFilter: "blur(24px)",
+            background:
+              "linear-gradient(140deg, rgba(24,24,32,0.92), rgba(20,20,28,0.65))",
+            border: "1px solid rgba(255,255,255,0.08)",
+          }}
+        >
+          <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            Anthem Party Song Selection
           </h1>
-          <p className="mt-3 text-sm text-gray-600 sm:text-base">
-            Wähle bis zu drei Songs aus, füge deinen Namen hinzu und sende
-            deinen Wunsch ab.
+          <p className="mt-5 max-w-xl text-sm leading-relaxed text-gray-300 sm:text-base">
+            Wähle bis zu drei Tracks, die auf die Primetime-Playlist gehören. Je
+            öfter ein Song genannt wird, desto grösser die Chance, dass der
+            Track gespielt wird.
           </p>
         </section>
 
@@ -182,10 +197,16 @@ const HomePage: NextPage = () => {
             return (
               <div
                 key={idx}
-                className="flex flex-col gap-4 rounded-2xl border border-gray-100 bg-white p-4 shadow-sm sm:flex-row sm:items-center sm:justify-between sm:gap-3"
+                className="flex flex-col gap-4 rounded-3xl p-4 shadow-[0_18px_36px_rgba(0,0,0,0.5)] sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+                style={{
+                  backdropFilter: "blur(18px)",
+                  background:
+                    "linear-gradient(150deg, rgba(28,28,36,0.88), rgba(22,22,32,0.62))",
+                  border: "1px solid rgba(255,255,255,0.06)",
+                }}
               >
                 <div className="flex flex-1 items-start gap-3 sm:items-center">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-100 text-sm font-semibold text-gray-700">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-fuchsia-500 to-purple-600 text-sm font-semibold text-white shadow-[0_10px_22px_rgba(244,63,94,0.35)]">
                     {idx + 1}
                   </span>
                   {track ? (
@@ -195,18 +216,18 @@ const HomePage: NextPage = () => {
                         <img
                           src={track.image_url}
                           alt={track.name}
-                          className="h-14 w-14 rounded-lg object-cover"
+                          className="h-16 w-16 rounded-2xl object-cover shadow-[0_16px_28px_rgba(0,0,0,0.55)]"
                         />
                       ) : (
-                        <div className="flex h-14 w-14 items-center justify-center rounded-lg bg-gray-200 text-xs text-gray-600">
+                        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gray-700/60 text-xs text-gray-300">
                           Kein Bild
                         </div>
                       )}
                       <div>
-                        <div className="text-sm font-semibold text-gray-900 sm:text-base">
+                        <div className="text-sm font-semibold text-white sm:text-base">
                           {track.name}
                         </div>
-                        <div className="text-xs text-gray-600 sm:text-sm">
+                        <div className="text-xs text-gray-300 sm:text-sm">
                           {track.artists}
                         </div>
                         {track.album && (
@@ -217,16 +238,16 @@ const HomePage: NextPage = () => {
                       </div>
                     </div>
                   ) : (
-                    <div className="text-sm text-gray-500 sm:text-base">
+                    <div className="text-sm text-gray-400 sm:text-base">
                       Noch kein Song gewählt
                     </div>
                   )}
                 </div>
-                <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
                   {track && (
                     <button
                       type="button"
-                      className="text-xs text-gray-500 underline sm:text-sm"
+                      className="text-xs text-gray-400 underline transition hover:text-rose-300 sm:text-sm"
                       onClick={() => handleRemoveTrack(idx)}
                     >
                       Entfernen
@@ -234,7 +255,12 @@ const HomePage: NextPage = () => {
                   )}
                   <button
                     type="button"
-                    className="w-full rounded-xl border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 transition hover:border-gray-300 hover:text-gray-900 sm:w-auto"
+                    className="w-full rounded-xl px-4 py-2 text-sm font-semibold text-white transition sm:w-auto"
+                    style={{
+                      background:
+                        "linear-gradient(125deg, rgba(252,70,100,0.85), rgba(110,15,255,0.85))",
+                      boxShadow: "0 14px 28px rgba(250,70,120,0.32)",
+                    }}
                     onClick={() => openSearchForSlot(idx)}
                   >
                     {track ? "Ändern" : "Song wählen"}
@@ -245,8 +271,16 @@ const HomePage: NextPage = () => {
           })}
         </section>
 
-        <section className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm sm:p-6">
-          <h2 className="mb-4 text-lg font-semibold text-gray-900 sm:text-xl">
+        <section
+          className="rounded-3xl p-5 shadow-[0_24px_42px_rgba(0,0,0,0.55)] sm:p-6"
+          style={{
+            background:
+              "linear-gradient(140deg, rgba(22,22,32,0.92), rgba(28,24,48,0.7))",
+            border: "1px solid rgba(255,255,255,0.08)",
+            backdropFilter: "blur(22px)",
+          }}
+        >
+          <h2 className="mb-4 text-lg font-semibold text-white sm:text-xl">
             Deine Angaben
           </h2>
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
@@ -255,7 +289,7 @@ const HomePage: NextPage = () => {
                 <div>
                   <label
                     htmlFor="firstName"
-                    className="text-sm font-medium text-gray-700"
+                    className="text-sm font-medium text-gray-200"
                   >
                     Vorname
                   </label>
@@ -264,14 +298,14 @@ const HomePage: NextPage = () => {
                     type="text"
                     value={firstName}
                     onChange={(event) => setFirstName(event.target.value)}
-                    className="mt-1 block w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100"
+                    className="mt-1 block w-full rounded-lg border border-white/10 bg-white/10 px-3 py-2 text-sm text-white placeholder-gray-400 focus:border-fuchsia-500 focus:outline-none focus:ring-2 focus:ring-fuchsia-400/40"
                     required
                   />
                 </div>
                 <div>
                   <label
                     htmlFor="lastName"
-                    className="text-sm font-medium text-gray-700"
+                    className="text-sm font-medium text-gray-200"
                   >
                     Nachname
                   </label>
@@ -280,7 +314,7 @@ const HomePage: NextPage = () => {
                     type="text"
                     value={lastName}
                     onChange={(event) => setLastName(event.target.value)}
-                    className="mt-1 block w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100"
+                    className="mt-1 block w-full rounded-lg border border-white/10 bg-white/10 px-3 py-2 text-sm text-white placeholder-gray-400 focus:border-fuchsia-500 focus:outline-none focus:ring-2 focus:ring-fuchsia-400/40"
                     required
                   />
                 </div>
@@ -290,7 +324,7 @@ const HomePage: NextPage = () => {
             <div className="flex flex-col gap-1">
               <label
                 htmlFor="email"
-                className="text-sm font-medium text-gray-700"
+                className="text-sm font-medium text-gray-200"
               >
                 E-Mail-Adresse
               </label>
@@ -299,7 +333,7 @@ const HomePage: NextPage = () => {
                 type="email"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
-                className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100"
+                className="rounded-lg border border-white/10 bg-white/10 px-3 py-2 text-sm text-white placeholder-gray-400 focus:border-fuchsia-500 focus:outline-none focus:ring-2 focus:ring-fuchsia-400/40"
                 required
               />
             </div>
@@ -307,19 +341,24 @@ const HomePage: NextPage = () => {
             <button
               type="submit"
               disabled={submitting}
-              className="w-full rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-500 disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
+              className="w-full rounded-lg px-4 py-3 text-sm font-semibold text-white transition disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
+              style={{
+                background:
+                  "linear-gradient(115deg, rgba(255, 110, 50, 0.85), rgba(178, 55, 255, 0.85))",
+                boxShadow: "0 14px 28px rgba(178, 55, 255, 0.3)",
+              }}
             >
               {submitting ? "Sende..." : "Songwunsch abschicken"}
             </button>
 
             {submitError && (
-              <p className="text-sm text-red-600">{submitError}</p>
+              <p className="text-sm text-rose-400">{submitError}</p>
             )}
             {submitSuccess && (
-              <p className="text-sm text-green-600">{submitSuccess}</p>
+              <p className="text-sm text-emerald-400">{submitSuccess}</p>
             )}
             {channelError && (
-              <p className="text-sm text-yellow-600">{channelError}</p>
+              <p className="text-sm text-amber-400">{channelError}</p>
             )}
           </form>
         </section>
@@ -334,7 +373,6 @@ const HomePage: NextPage = () => {
             ? selectedTracks[activeSlotIndex]?.id ?? null
             : null
         }
-        initialQuery={modalInitialQuery}
       />
     </>
   );

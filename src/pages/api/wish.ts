@@ -140,6 +140,20 @@ export default async function handler(
 
     const { body } = validationResult;
 
+    const existingWish = await prisma.songWish.findFirst({
+      where: { email: body.email },
+    });
+
+    if (existingWish) {
+      res
+        .status(409)
+        .json({
+          error:
+            "Für diese E-Mail-Adresse wurde bereits ein Songwunsch abgegeben.",
+        });
+      return;
+    }
+
     const data = body.tracks.map((track, index) => ({
       firstName: body.firstName,
       lastName: body.lastName,
