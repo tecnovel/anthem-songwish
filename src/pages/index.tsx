@@ -93,6 +93,8 @@ const HomePage: NextPage = () => {
       return copy;
     });
     setSubmitSuccess(null);
+    // close the search modal after selecting a track so the change is applied immediately
+    closeSearch();
   };
 
   const handleRemoveTrack = (index: number) => {
@@ -158,10 +160,10 @@ const HomePage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Anthem Party – Night Selection</title>
+        <title>Song Wish</title>
         <meta
           name="description"
-          content="Pick deine Nightlife-Favoriten – bis zu drei Tracks, die in der Anthem Party Primetime laufen sollen."
+          content="Wähle deine Nightlife-Favoriten – bis zu drei Tracks, die an der Greatest Party Anthems Primetime laufen sollen."
         />
       </Head>
       <main
@@ -181,7 +183,7 @@ const HomePage: NextPage = () => {
           }}
         >
           <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Anthem Party Song Selection
+            Greatest Party Anthems - Song Selection
           </h1>
           <p className="mt-5 max-w-xl text-sm leading-relaxed text-gray-300 sm:text-base">
             Wähle bis zu drei Tracks, die auf die Primetime-Playlist gehören. Je
@@ -206,7 +208,7 @@ const HomePage: NextPage = () => {
                 }}
               >
                 <div className="flex flex-1 items-start gap-3 sm:items-center">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-fuchsia-500 to-purple-600 text-sm font-semibold text-white shadow-[0_10px_22px_rgba(244,63,94,0.35)]">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-fuchsia-500 to-purple-600 text-sm font-semibold text-white shadow-[0_10px_22px_rgba(244,63,94,0.35)]">
                     {idx + 1}
                   </span>
                   {track ? (
@@ -373,6 +375,7 @@ const HomePage: NextPage = () => {
             ? selectedTracks[activeSlotIndex]?.id ?? null
             : null
         }
+        initialQuery={modalInitialQuery}
       />
     </>
   );
