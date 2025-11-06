@@ -23,6 +23,7 @@ const HomePage: NextPage = () => {
   const [email, setEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [emailError, setEmailError] = useState<string | null>(null);
   const [submitSuccess, setSubmitSuccess] = useState<string | null>(null);
   const [channel, setChannel] = useState<string | null>(null);
   const [channelError, setChannelError] = useState<string | null>(null);
@@ -109,6 +110,18 @@ const HomePage: NextPage = () => {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    // client-side email validation: basic structure + TLD (e.g. .ch, .com, .de)
+    const normalizedEmail = email.trim();
+    const basicEmailRegex = /^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/;
+    if (!basicEmailRegex.test(normalizedEmail)) {
+      setEmailError(
+        "Bitte gib eine gültige E‑Mail-Adresse an (z.B. name@example.com)."
+      );
+      setSubmitError(null);
+      return;
+    }
+    setEmailError(null);
+
     if (!hasAnySelection) {
       setSubmitError("Bitte wähle mindestens einen Song aus.");
       return;
@@ -123,6 +136,7 @@ const HomePage: NextPage = () => {
     );
 
     try {
+      const emailToSend = normalizedEmail;
       const response = await fetch("/api/wish", {
         method: "POST",
         headers: {
@@ -131,7 +145,7 @@ const HomePage: NextPage = () => {
         body: JSON.stringify({
           firstName,
           lastName,
-          email,
+          email: emailToSend,
           tracks: tracksToSubmit,
           channel: channel ?? undefined,
         }),
@@ -339,10 +353,20 @@ const HomePage: NextPage = () => {
                 id="email"
                 type="email"
                 value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                className="rounded-lg border border-white/10 bg-white/10 px-3 py-2 text-sm text-white placeholder-gray-400 focus:border-fuchsia-500 focus:outline-none focus:ring-2 focus:ring-fuchsia-400/40"
+                onChange={(event) => {
+                  setEmail(event.target.value);
+                  if (emailError) setEmailError(null);
+                }}
+                className={`rounded-lg border px-3 py-2 text-sm placeholder-gray-400 focus:outline-none ${
+                  emailError
+                    ? "border-rose-400 bg-white/10 text-white focus:border-rose-500 focus:ring-2 focus:ring-rose-100"
+                    : "border-white/10 bg-white/10 text-white focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-400/40"
+                }`}
                 required
               />
+              {emailError && (
+                <p className="mt-1 text-sm text-rose-400">{emailError}</p>
+              )}
             </div>
 
             <button
