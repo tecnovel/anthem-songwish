@@ -1,6 +1,6 @@
 var R=require("../chunks/ssr/[turbopack]_runtime.js")("server/pages/index.js")
-R.c("server/chunks/ssr/node_modules_51b0052e._.js")
-R.c("server/chunks/ssr/[root-of-the-server]__33ed7647._.js")
+R.c("server/chunks/ssr/node_modules_5f010a2c._.js")
+R.c("server/chunks/ssr/[root-of-the-server]__5bf2a6ae._.js")
 R.c("server/chunks/ssr/node_modules_24199772._.js")
 R.c("server/chunks/ssr/[root-of-the-server]__e6a4d965._.js")
 R.c("server/chunks/ssr/[root-of-the-server]__158f16b5._.js")

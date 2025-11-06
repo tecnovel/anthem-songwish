@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Script from "next/script";
 import type { NextPage } from "next";
 import React, { FormEvent, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/router";
@@ -185,6 +186,22 @@ const HomePage: NextPage = () => {
           content="Wähle deine Nightlife-Favoriten – bis zu drei Tracks, die an der Greatest Party Anthems Primetime laufen sollen."
         />
       </Head>
+      {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
+        <>
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
+            strategy="afterInteractive"
+          />
+          <Script id="ga-init" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}');
+            `}
+          </Script>
+        </>
+      )}
       <main
         className="mx-auto flex min-h-screen w-full max-w-3xl flex-col gap-8 px-4 py-10 sm:px-6 sm:py-14"
         style={{
