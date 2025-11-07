@@ -222,9 +222,8 @@ const HomePage: NextPage = () => {
             Greatest Party Anthems - Song Selection
           </h1>
           <p className="mt-5 max-w-xl text-sm leading-relaxed text-gray-300 sm:text-base">
-            Wähle bis zu drei Tracks, die auf die Primetime-Playlist gehören. Je
-            öfter ein Song genannt wird, desto grösser die Chance, dass der
-            Track gespielt wird.
+            Wähle bis zu drei Tracks, die auf die Primetime-Playlist gehören.
+            Die 30 meistgenannten Songs, werden an der Party gespielt!
           </p>
         </section>
 

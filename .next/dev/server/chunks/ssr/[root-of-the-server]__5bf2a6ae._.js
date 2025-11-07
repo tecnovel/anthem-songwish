@@ -645,7 +645,7 @@ const HomePage = ()=>{
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
                                 className: "mt-5 max-w-xl text-sm leading-relaxed text-gray-300 sm:text-base",
-                                children: "Wähle bis zu drei Tracks, die auf die Primetime-Playlist gehören. Je öfter ein Song genannt wird, desto grösser die Chance, dass der Track gespielt wird."
+                                children: "Wähle bis zu drei Tracks, die auf die Primetime-Playlist gehören. Die 30 meistgenannten Songs, werden an der Party gespielt!"
                             }, void 0, false, {
                                 fileName: "[project]/src/pages/index.tsx",
                                 lineNumber: 224,
@@ -679,7 +679,7 @@ const HomePage = ()=>{
                                                 children: idx + 1
                                             }, void 0, false, {
                                                 fileName: "[project]/src/pages/index.tsx",
-                                                lineNumber: 247,
+                                                lineNumber: 246,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             track ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -692,14 +692,14 @@ const HomePage = ()=>{
                                                         className: "h-16 w-16 rounded-2xl object-cover shadow-[0_16px_28px_rgba(0,0,0,0.55)]"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/pages/index.tsx",
-                                                        lineNumber: 254,
+                                                        lineNumber: 253,
                                                         columnNumber: 25
                                                     }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
                                                         className: "flex h-16 w-16 items-center justify-center rounded-2xl bg-gray-700/60 text-xs text-gray-300",
                                                         children: "Kein Bild"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/pages/index.tsx",
-                                                        lineNumber: 260,
+                                                        lineNumber: 259,
                                                         columnNumber: 25
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -709,7 +709,7 @@ const HomePage = ()=>{
                                                                 children: track.name
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/pages/index.tsx",
-                                                                lineNumber: 265,
+                                                                lineNumber: 264,
                                                                 columnNumber: 25
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -717,7 +717,7 @@ const HomePage = ()=>{
                                                                 children: track.artists
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/pages/index.tsx",
-                                                                lineNumber: 268,
+                                                                lineNumber: 267,
                                                                 columnNumber: 25
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             track.album && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -728,32 +728,32 @@ const HomePage = ()=>{
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/pages/index.tsx",
-                                                                lineNumber: 272,
+                                                                lineNumber: 271,
                                                                 columnNumber: 27
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/pages/index.tsx",
-                                                        lineNumber: 264,
+                                                        lineNumber: 263,
                                                         columnNumber: 23
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/pages/index.tsx",
-                                                lineNumber: 251,
+                                                lineNumber: 250,
                                                 columnNumber: 21
                                             }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
                                                 className: "text-sm text-gray-400 sm:text-base",
                                                 children: "Noch kein Song gewählt"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/pages/index.tsx",
-                                                lineNumber: 279,
+                                                lineNumber: 278,
                                                 columnNumber: 21
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/pages/index.tsx",
-                                        lineNumber: 246,
+                                        lineNumber: 245,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -766,7 +766,7 @@ const HomePage = ()=>{
                                                 children: "Entfernen"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/pages/index.tsx",
-                                                lineNumber: 286,
+                                                lineNumber: 285,
                                                 columnNumber: 21
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
@@ -780,25 +780,25 @@ const HomePage = ()=>{
                                                 children: track ? "Ändern" : "Song wählen"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/pages/index.tsx",
-                                                lineNumber: 294,
+                                                lineNumber: 293,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/pages/index.tsx",
-                                        lineNumber: 284,
+                                        lineNumber: 283,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, idx, true, {
                                 fileName: "[project]/src/pages/index.tsx",
-                                lineNumber: 236,
+                                lineNumber: 235,
                                 columnNumber: 15
                             }, ("TURBOPACK compile-time value", void 0));
                         })
                     }, void 0, false, {
                         fileName: "[project]/src/pages/index.tsx",
-                        lineNumber: 231,
+                        lineNumber: 230,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("section", {
@@ -814,7 +814,7 @@ const HomePage = ()=>{
                                 children: "Deine Angaben"
                             }, void 0, false, {
                                 fileName: "[project]/src/pages/index.tsx",
-                                lineNumber: 321,
+                                lineNumber: 320,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("form", {
@@ -834,7 +834,7 @@ const HomePage = ()=>{
                                                             children: "Vorname"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/pages/index.tsx",
-                                                            lineNumber: 328,
+                                                            lineNumber: 327,
                                                             columnNumber: 19
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
@@ -846,13 +846,13 @@ const HomePage = ()=>{
                                                             required: true
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/pages/index.tsx",
-                                                            lineNumber: 334,
+                                                            lineNumber: 333,
                                                             columnNumber: 19
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/pages/index.tsx",
-                                                    lineNumber: 327,
+                                                    lineNumber: 326,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -863,7 +863,7 @@ const HomePage = ()=>{
                                                             children: "Nachname"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/pages/index.tsx",
-                                                            lineNumber: 344,
+                                                            lineNumber: 343,
                                                             columnNumber: 19
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
@@ -875,24 +875,24 @@ const HomePage = ()=>{
                                                             required: true
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/pages/index.tsx",
-                                                            lineNumber: 350,
+                                                            lineNumber: 349,
                                                             columnNumber: 19
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/pages/index.tsx",
-                                                    lineNumber: 343,
+                                                    lineNumber: 342,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/pages/index.tsx",
-                                            lineNumber: 326,
+                                            lineNumber: 325,
                                             columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0))
                                     }, void 0, false, {
                                         fileName: "[project]/src/pages/index.tsx",
-                                        lineNumber: 325,
+                                        lineNumber: 324,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -904,7 +904,7 @@ const HomePage = ()=>{
                                                 children: "E-Mail-Adresse"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/pages/index.tsx",
-                                                lineNumber: 363,
+                                                lineNumber: 362,
                                                 columnNumber: 15
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
@@ -919,7 +919,7 @@ const HomePage = ()=>{
                                                 required: true
                                             }, void 0, false, {
                                                 fileName: "[project]/src/pages/index.tsx",
-                                                lineNumber: 369,
+                                                lineNumber: 368,
                                                 columnNumber: 15
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             emailError && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
@@ -927,13 +927,13 @@ const HomePage = ()=>{
                                                 children: emailError
                                             }, void 0, false, {
                                                 fileName: "[project]/src/pages/index.tsx",
-                                                lineNumber: 385,
+                                                lineNumber: 384,
                                                 columnNumber: 17
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/pages/index.tsx",
-                                        lineNumber: 362,
+                                        lineNumber: 361,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
@@ -947,7 +947,7 @@ const HomePage = ()=>{
                                         children: submitting ? "Sende..." : "Songwunsch abschicken"
                                     }, void 0, false, {
                                         fileName: "[project]/src/pages/index.tsx",
-                                        lineNumber: 389,
+                                        lineNumber: 388,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     submitError && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
@@ -955,7 +955,7 @@ const HomePage = ()=>{
                                         children: submitError
                                     }, void 0, false, {
                                         fileName: "[project]/src/pages/index.tsx",
-                                        lineNumber: 403,
+                                        lineNumber: 402,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     submitSuccess && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
@@ -963,7 +963,7 @@ const HomePage = ()=>{
                                         children: submitSuccess
                                     }, void 0, false, {
                                         fileName: "[project]/src/pages/index.tsx",
-                                        lineNumber: 406,
+                                        lineNumber: 405,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     channelError && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
@@ -971,19 +971,19 @@ const HomePage = ()=>{
                                         children: channelError
                                     }, void 0, false, {
                                         fileName: "[project]/src/pages/index.tsx",
-                                        lineNumber: 409,
+                                        lineNumber: 408,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/pages/index.tsx",
-                                lineNumber: 324,
+                                lineNumber: 323,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/pages/index.tsx",
-                        lineNumber: 312,
+                        lineNumber: 311,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
@@ -1000,7 +1000,7 @@ const HomePage = ()=>{
                 initialQuery: modalInitialQuery
             }, void 0, false, {
                 fileName: "[project]/src/pages/index.tsx",
-                lineNumber: 415,
+                lineNumber: 414,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0))
         ]
