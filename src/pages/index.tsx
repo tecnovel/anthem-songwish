@@ -219,10 +219,11 @@ const HomePage: NextPage = () => {
           }}
         >
           <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Greatest Party Anthems - Song Selection
+            Die Chartshow Party - Song Selection
           </h1>
           <p className="mt-5 max-w-xl text-sm leading-relaxed text-gray-300 sm:text-base">
             Wähle bis zu drei Tracks, die auf die Primetime-Playlist gehören.
+            <br />
             Die 30 meistgenannten Songs, werden an der Party gespielt!
           </p>
         </section>

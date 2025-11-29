@@ -99,7 +99,7 @@
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "/Users/noahpique/Documents/AnthemTool/anthem-songwish",
+    "outputFileTracingRoot": "/Users/noahpique/Documents/GitHub/anthem-songwish",
     "cacheComponents": false,
     "cacheLife": {
       "default": {
@@ -290,11 +290,11 @@
     "bundlePagesRouterDependencies": false,
     "configFileName": "next.config.ts",
     "turbopack": {
-      "root": "/Users/noahpique/Documents/AnthemTool/anthem-songwish"
+      "root": "/Users/noahpique/Documents/GitHub/anthem-songwish"
     },
     "distDirRoot": ".next"
   },
-  "appDir": "/Users/noahpique/Documents/AnthemTool/anthem-songwish",
+  "appDir": "/Users/noahpique/Documents/GitHub/anthem-songwish",
   "relativeAppDir": "",
   "files": [
     ".next/routes-manifest.json",

@@ -1,10 +1,10 @@
 globalThis.__BUILD_MANIFEST = {
   "pages": {
     "/": [
-      "static/chunks/bbe315f25d7e6cf6.js",
+      "static/chunks/fab33b906b4d4a2e.js",
       "static/chunks/e651604cb91b469f.js",
       "static/chunks/3254ba53c4695283.js",
-      "static/chunks/turbopack-b8cc34ecdcba4de0.js"
+      "static/chunks/turbopack-b8ba49f20af6d02e.js"
     ],
     "/_app": [
       "static/chunks/7c96818aa8572a5f.js",
