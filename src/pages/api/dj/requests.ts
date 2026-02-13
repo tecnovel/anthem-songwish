@@ -17,26 +17,38 @@ type SongRequestItem = {
   createdAt: string;
 };
 
-type SuccessResponse = { items: SongRequestItem[] };
+type GetResponse = { items: SongRequestItem[] };
+type DeleteResponse = { success: true; deleted: number };
 type ErrorResponse = { error: string };
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<SuccessResponse | ErrorResponse>
+  res: NextApiResponse<GetResponse | DeleteResponse | ErrorResponse>
 ): Promise<void> {
+  if (req.method === "DELETE") {
+    try {
+      const result = await prisma.songRequest.deleteMany({});
+      res.status(200).json({ success: true, deleted: result.count });
+    } catch (error) {
+      console.error("Error in DELETE /api/dj/requests:", error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+    return;
+  }
+
   if (req.method !== "GET") {
-    res.setHeader("Allow", "GET");
+    res.setHeader("Allow", "GET, DELETE");
     res.status(405).json({ error: "Method not allowed" });
     return;
   }
 
   try {
-    const tab = req.query.tab === "saved" ? "saved" : "queue";
+    const tab = req.query.tab === "saved" ? "saved" : req.query.tab === "played" ? "played" : "queue";
 
     const where =
-      tab === "saved"
-        ? { played: false, saved: true }
-        : { played: false, saved: false };
+      tab === "saved"  ? { played: false, saved: true } :
+      tab === "played" ? { played: true } :
+                         { played: false, saved: false };
 
     const requests = await prisma.songRequest.findMany({
       where,
@@ -60,7 +72,7 @@ export default async function handler(
 
     res.status(200).json({ items });
   } catch (error) {
-    console.error("Error in /api/dj/requests:", error);
+    console.error("Error in GET /api/dj/requests:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 }
