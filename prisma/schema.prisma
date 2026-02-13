@@ -7,11 +7,9 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model SongWish {
+model SongRequest {
   id           String   @id @default(cuid())
-  firstName    String
-  lastName     String
-  email        String
+  name         String
   trackId      String
   trackName    String
   trackArtists String
@@ -19,7 +17,7 @@ model SongWish {
   imageUrl     String?
   spotifyUrl   String?
   durationMs   Int?
-  slotIndex    Int
-  channel      String?
+  played       Boolean  @default(false)
+  saved        Boolean  @default(false)
   createdAt    DateTime @default(now())
 }

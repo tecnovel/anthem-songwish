@@ -1,0 +1,1 @@
+ALTER TABLE "SongRequest" ADD COLUMN "saved" BOOLEAN NOT NULL DEFAULT false;
